@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Miguel Ángel Montoya Ramírez - CV</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .cv-container {
+            max-width: 210mm;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            border-radius: 15px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+            color: white;
+            padding: 25px 30px;
+            text-align: center;
+            position: relative;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+            background-size: 30px 30px;
+            animation: float 20s infinite linear;
+        }
+
+        @keyframes float {
+            0% { transform: translate(-50px, -50px) rotate(0deg); }
+            100% { transform: translate(-50px, -50px) rotate(360deg); }
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .name {
+            font-size: 2em;
+            font-weight: 700;
+            margin-bottom: 8px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .title {
+            font-size: 1em;
+            font-weight: 300;
+            opacity: 0.9;
+            margin-bottom: 15px;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(255,255,255,0.1);
+            padding: 6px 12px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            font-size: 0.85em;
+        }
+
+        .contact-item:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-2px);
+        }
+
+        .main-content {
+            padding: 25px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+        }
+
+        .left-column, .right-column {
+            space-y: 30px;
+        }
+
+        .section {
+            margin-bottom: 25px;
+        }
+
+        .section-title {
+            font-size: 1.2em;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .section-title::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 3px;
+            height: 20px;
+            background: linear-gradient(135deg, #3498db, #2c3e50);
+            border-radius: 2px;
+        }
+
+        .profile-text {
+            text-align: justify;
+            line-height: 1.6;
+            color: #555;
+            font-size: 0.9em;
+        }
+
+        .education-item, .project-item, .skill-category {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 12px;
+            border-left: 3px solid #3498db;
+            transition: all 0.3s ease;
+        }
+
+        .education-item:hover, .project-item:hover, .skill-category:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .education-title, .project-title {
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+
+        .education-institution, .project-tech {
+            color: #3498db;
+            font-weight: 500;
+        }
+
+        .education-date {
+            color: #7f8c8d;
+            font-style: italic;
+            font-size: 0.9em;
+        }
+
+        .project-description {
+            margin-top: 8px;
+            color: #555;
+            line-height: 1.5;
+            font-size: 0.9em;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 10px;
+        }
+
+        .skill-tag {
+            background: linear-gradient(135deg, #3498db, #2c3e50);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 15px;
+            text-align: center;
+            font-size: 0.85em;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .skill-tag:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
+        }
+
+        .languages {
+            display: grid;
+            gap: 15px;
+        }
+
+        .language-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border-left: 3px solid #27ae60;
+        }
+
+        .language-name {
+            font-weight: 600;
+            color: #2c3e50;
+        }
+
+        .language-level {
+            color: #27ae60;
+            font-weight: 500;
+        }
+
+        .competencies {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .competency-item {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 15px;
+            border-radius: 12px;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .competency-item:hover {
+            border-color: #3498db;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .competency-title {
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.95em;
+        }
+
+        .competency-description {
+            color: #555;
+            line-height: 1.5;
+            font-size: 0.85em;
+        }
+
+        .full-width {
+            grid-column: 1 / -1;
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            .cv-container {
+                box-shadow: none;
+                border-radius: 0;
+                max-width: none;
+            }
+            .header::before {
+                display: none;
+            }
+        }
+
+       
+        .icon-email::before { content: "📧 "; }
+        .icon-phone::before { content: "📱 "; }
+        .icon-github::before { content: "🔗 "; }
+        .icon-linkedin::before { content: "💼 "; }
+        .icon-code::before { content: "💻 "; }
+        .icon-analytics::before { content: "📊 "; }
+        .icon-project::before { content: "📋 "; }
+        .icon-team::before { content: "👥 "; }
+    </style>
+</head>
+<body>
+    <div class="cv-container">
+        <header class="header">
+            <div class="header-content">
+                <h1 class="name">Miguel Ángel Montoya Ramírez</h1>
+                <p class="title">Software Developer | Tecnólogo en Desarrollo de Software</p>
+                <div class="contact-info">
+                    <div class="contact-item icon-email">miguelangelmontoyaramirez09@gmail.com</div>
+                    <div class="contact-item icon-phone">+57 316 695 4241</div>
+                    <div class="contact-item icon-github">github.com/MiguelMontoya231</div>
+                    <div class="contact-item icon-linkedin">linkedin.com/in/miguel-angel-montoya-ramirez-b3639032a</div>
+                </div>
+            </div>
+        </header>
+
+        <div class="main-content">
+            <div class="left-column">
+                <section class="section">
+                    <h2 class="section-title">Perfil Profesional</h2>
+                    <p class="profile-text">
+                        Desarrollador de software con sólida formación técnica y experiencia práctica en desarrollo web fullstack. Especializado en JavaScript, React y Node.js con enfoque en crear soluciones digitales escalables. Apasionado por la resolución de problemas complejos, el aprendizaje continuo y la colaboración en equipos multidisciplinarios.
+                    </p>
+                </section>
+
+                <section class="section">
+                    <h2 class="section-title">Educación</h2>
+                    <div class="education-item">
+                        <div class="education-title">Tecnología en Desarrollo de Software</div>
+                        <div class="education-institution">Universidad del Valle</div>
+                        <div class="education-date">7º semestre (2020 – Presente)</div>
+                    </div>
+                    <div class="education-item">
+                        <div class="education-title">Técnico en Sistemas</div>
+                        <div class="education-institution">SENA</div>
+                        <div class="education-date">2019</div>
+                    </div>
+                    <div class="education-item">
+                        <div class="education-title">Bachiller Técnico en Sistemas</div>
+                        <div class="education-institution">Colegio Manuel Antonio Bonilla</div>
+                        <div class="education-date">2019</div>
+                    </div>
+                </section>
+
+                <section class="section">
+                    <h2 class="section-title">Idiomas</h2>
+                    <div class="languages">
+                        <div class="language-item">
+                            <span class="language-name">Español</span>
+                            <span class="language-level">Nativo</span>
+                        </div>
+                        <div class="language-item">
+                            <span class="language-name">Inglés</span>
+                            <span class="language-level">B1 Intermedio</span>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <div class="right-column">
+                <section class="section">
+                    <h2 class="section-title">Proyectos Destacados</h2>
+                    <div class="project-item">
+                        <div class="project-title">Sistema de Gestión de Inventario</div>
+                        <div class="project-tech">Node.js • Express • PostgreSQL</div>
+                        <div class="project-description">
+                            Sistema completo de gestión que optimiza el control de inventarios con APIs RESTful y manejo de transacciones.
+                        </div>
+                    </div>
+                    <div class="project-item">
+                        <div class="project-title">Aplicación Web de E-commerce</div>
+                        <div class="project-tech">React • Firebase • JavaScript</div>
+                        <div class="project-description">
+                            Experiencia completa de usuario con autenticación, carrito de compras e integración de pasarela de pagos.
+                        </div>
+                    </div>
+                    <div class="project-item">
+                        <div class="project-title">Dashboard de Inversiones</div>
+                        <div class="project-tech">React • Node.js</div>
+                        <div class="project-description">
+                            Desarrollo fullstack con visualización de datos financieros implementado siguiendo metodologías ágiles.
+                        </div>
+                    </div>
+                </section>
+
+                <section class="section">
+                    <h2 class="section-title"> Habilidades Técnicas</h2>
+                    <div class="skill-category">
+                        <h4 style="margin-bottom: 10px; color: #2c3e50; font-size: 0.9em;">Lenguajes</h4>
+                        <div class="skills-grid">
+                            <div class="skill-tag">JavaScript</div>
+                            <div class="skill-tag">Python</div>
+                            <div class="skill-tag">Java</div>
+                            <div class="skill-tag">SQL</div>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h4 style="margin-bottom: 10px; color: #2c3e50; font-size: 0.9em;">Frameworks</h4>
+                        <div class="skills-grid">
+                            <div class="skill-tag">React.js</div>
+                            <div class="skill-tag">Node.js</div>
+                            <div class="skill-tag">Express.js</div>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h4 style="margin-bottom: 10px; color: #2c3e50; font-size: 0.9em;">Herramientas</h4>
+                        <div class="skills-grid">
+                            <div class="skill-tag">Git/GitHub</div>
+                            <div class="skill-tag">PostgreSQL</div>
+                            <div class="skill-tag">VS Code</div>
+                            <div class="skill-tag">Postman</div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <section class="section full-width">
+                <h2 class="section-title">💡 Competencias Clave</h2>
+                <div class="competencies">
+                    <div class="competency-item">
+                        <div class="competency-title icon-analytics">Resolución de Problemas & Análisis</div>
+                        <div class="competency-description">
+                            Experiencia resolviendo desafíos técnicos complejos aplicando pensamiento analítico para encontrar soluciones eficientes.
+                        </div>
+                    </div>
+                    <div class="competency-item">
+                        <div class="competency-title icon-project">Gestión de Proyectos</div>
+                        <div class="competency-description">
+                            Manejo de proyectos desde la conceptualización hasta el deployment utilizando metodologías ágiles.
+                        </div>
+                    </div>
+                    <div class="competency-item">
+                        <div class="competency-title icon-team">Trabajo en Equipo & Mentoría</div>
+                        <div class="competency-description">
+                            Colaboración efectiva en equipos multidisciplinarios con disposición para enseñar y aprender de compañeros.
+                        </div>
+                    </div>
+                    <div class="competency-item">
+                        <div class="competency-title icon-code">Adaptabilidad Tecnológica</div>
+                        <div class="competency-description">
+                            Capacidad para aprender nuevas tecnologías rápidamente y adaptarse a diferentes stacks según las necesidades del proyecto.
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</body>
+</html>
